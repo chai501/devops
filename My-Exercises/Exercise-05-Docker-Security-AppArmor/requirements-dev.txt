@@ -1,2 +1,0 @@
--r requirements.txt
-docker==7.1.0
