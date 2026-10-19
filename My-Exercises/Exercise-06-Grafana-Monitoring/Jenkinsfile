@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Validate') {
+            steps {
+                sh 'cp -a /workspace/exercise/. .'
+                sh 'python3 -c "import ast, pathlib; ast.parse(pathlib.Path(\'delivery_metrics.py\').read_text())"'
+                sh 'docker compose config --quiet'
+            }
+        }
+
+        stage('Build Metrics Image') {
+            steps {
+                sh 'docker compose build delivery-metrics'
+            }
+        }
+    }
+}
