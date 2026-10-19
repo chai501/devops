@@ -3,8 +3,9 @@
 Each completed exercise has its own folder containing implementation notes
 and run instructions. Exercises 1–4 and 6 are complete; Exercise 5 is partially complete.
 Exercise 7's Jenkins container is running; Exercise 8's script is implemented
-but its Freestyle job still needs to be run; Exercises 9–10 have not been
-started yet.
+but its Freestyle job still needs to be run; Exercise 9's app and pipeline
+are implemented but the Jenkins job still needs to run; Exercise 10 has not
+been started yet.
 
 | # | Exercise | Folder |
 |---|---|---|
@@ -16,7 +17,7 @@ started yet.
 | 6 | Real-time monitoring and alerting with Grafana | [Exercise-06-Grafana-Monitoring](Exercise-06-Grafana-Monitoring/README.md) — Completed; monitoring, alerts, and Jenkins pipeline verified |
 | 7 | Jenkins CI automation | [Exercise-07-Jenkins-CI-Automation](Exercise-07-Jenkins-CI-Automation/README.md) — Running; complete the first-run admin wizard |
 | 8 | Create a Jenkins Hello World job | [Exercise-08-Jenkins-Hello-World](Exercise-08-Jenkins-Hello-World/README.md) — Script verified; Jenkins job setup pending |
-| 9 | Jenkins multi-stage pipeline | Not started |
+| 9 | Jenkins multi-stage pipeline | [Exercise-09-Jenkins-Multi-Stage-Pipeline](Exercise-09-Jenkins-Multi-Stage-Pipeline/README.md) — App and pipeline implemented; Jenkins run pending |
 | 10 | Multi-node, multi-app Minikube deployment | Not started |
 
 The original exercise guides can be found in the
