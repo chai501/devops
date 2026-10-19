@@ -1,0 +1,13 @@
+services:
+  jenkins:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${JENKINS_HTTP_PORT:-8082}:8080"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+    init: true
+    stop_grace_period: 1m
+
+volumes:
+  jenkins_home:
