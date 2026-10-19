@@ -1,4 +1,7 @@
 from pathlib import Path
+import time
+from urllib.error import URLError
+from urllib.request import urlopen
 
 import docker
 
@@ -39,6 +42,26 @@ def main():
                 f"inspect reported {applied_profile!r}. "
                 f"Requested security options were {security_options!r}."
             )
+
+        for attempt in range(10):
+            try:
+                response = urlopen(f"http://127.0.0.1:{HOST_PORT}/", timeout=1)
+            except URLError as error:
+                if not isinstance(error.reason, ConnectionRefusedError):
+                    raise RuntimeError("Could not verify the Flask response.") from error
+                if attempt == 9:
+                    raise RuntimeError(
+                        "The Flask application did not become available."
+                    ) from error
+                time.sleep(1)
+            else:
+                with response:
+                    if response.status != 200:
+                        raise RuntimeError(
+                            f"Expected HTTP 200 from Flask, got {response.status}."
+                        )
+                    print(f"Flask response: HTTP {response.status}")
+                break
     finally:
         container.stop()
         container.remove()

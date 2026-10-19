@@ -25,21 +25,30 @@ def main():
         file_result = container.exec_run(
             ["python", "-c", "open('/etc/passwd').read()"]
         )
-        shell_result = container.exec_run(["/bin/bash", "-c", "true"])
+        shell_result = container.exec_run(
+            [
+                "python",
+                "-c",
+                "import subprocess; "
+                "subprocess.run(['/bin/bash', '-c', 'true'], check=True)",
+            ]
+        )
 
+        file_output = file_result.output.decode(errors="replace").strip()
+        shell_output = shell_result.output.decode(errors="replace").strip()
         print(
             "Attempt to read /etc/passwd: "
-            f"Exit Code {file_result.exit_code}, "
-            f"Output: {file_result.output.decode(errors='replace').strip()}"
+            f"Exit Code {file_result.exit_code}, Output: {file_output}"
         )
         print(
             "Attempt to execute /bin/bash: "
-            f"Exit Code {shell_result.exit_code}, "
-            f"Output: {shell_result.output.decode(errors='replace').strip()}"
+            f"Exit Code {shell_result.exit_code}, Output: {shell_output}"
         )
 
-        if file_result.exit_code == 0 or shell_result.exit_code == 0:
-            raise RuntimeError("An AppArmor-restricted action unexpectedly succeeded.")
+        if file_result.exit_code == 0 or "PermissionError" not in file_output:
+            raise RuntimeError("AppArmor did not deny reading /etc/passwd.")
+        if shell_result.exit_code == 0 or "PermissionError" not in shell_output:
+            raise RuntimeError("AppArmor did not deny executing /bin/bash.")
     finally:
         container.stop()
         container.remove()
