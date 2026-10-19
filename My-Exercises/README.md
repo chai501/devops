@@ -2,7 +2,8 @@
 
 Each completed exercise has its own folder containing implementation notes
 and run instructions. Exercises 1–4 and 6 are complete; Exercise 5 is partially complete.
-Exercise 7's Jenkins container is running; Exercises 8–10 have not been
+Exercise 7's Jenkins container is running; Exercise 8's script is implemented
+but its Freestyle job still needs to be run; Exercises 9–10 have not been
 started yet.
 
 | # | Exercise | Folder |
@@ -14,7 +15,7 @@ started yet.
 | 5 | Docker security with AppArmor | [Exercise-05-Docker-Security-AppArmor](Exercise-05-Docker-Security-AppArmor/README.md) — AppArmor tools installed in WSL; kernel lacks AppArmor for enforcement |
 | 6 | Real-time monitoring and alerting with Grafana | [Exercise-06-Grafana-Monitoring](Exercise-06-Grafana-Monitoring/README.md) — Completed; monitoring, alerts, and Jenkins pipeline verified |
 | 7 | Jenkins CI automation | [Exercise-07-Jenkins-CI-Automation](Exercise-07-Jenkins-CI-Automation/README.md) — Running; complete the first-run admin wizard |
-| 8 | Create a Jenkins Hello World job | Not started |
+| 8 | Create a Jenkins Hello World job | [Exercise-08-Jenkins-Hello-World](Exercise-08-Jenkins-Hello-World/README.md) — Script verified; Jenkins job setup pending |
 | 9 | Jenkins multi-stage pipeline | Not started |
 | 10 | Multi-node, multi-app Minikube deployment | Not started |
 
