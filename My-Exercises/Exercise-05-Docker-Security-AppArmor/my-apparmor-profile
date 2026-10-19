@@ -1,0 +1,17 @@
+#include <tunables/global>
+
+profile my-apparmor-profile flags=(attach_disconnected,mediate_deleted) {
+  #include <abstractions/base>
+
+  network inet stream,
+  /usr/local/bin/python* ix,
+  /usr/local/lib/** mr,
+  /usr/lib/** mr,
+  /lib/** mr,
+  /app/** r,
+  /etc/ld.so.cache r,
+
+  deny /etc/passwd r,
+  deny /bin/** x,
+  deny /usr/bin/** x,
+}
